@@ -154,8 +154,11 @@ RUNNER_VARIABLES: dict[str, Any] = {
 #:
 #: `concurrent_streams` and `stream_disconnect` are `expect_stream.streams`
 #: and `disconnect_after`, which the runner implements on all three bindings.
+#: `fresh_connection` is available on owned HTTP clients; tests using it
+#: filter to JSON-RPC/HTTP+JSON. Injected clients are explicitly skipped.
 RUNNER_CAPABILITIES: tuple[RunnerRequirement, ...] = (
     RunnerRequirement.HEADER_INSPECTION,
+    RunnerRequirement.FRESH_CONNECTION,
     RunnerRequirement.AUTH_CREDENTIALS,
     RunnerRequirement.CONCURRENT_STREAMS,
     RunnerRequirement.STREAM_DISCONNECT,

@@ -13,6 +13,7 @@ adapter reaches in here too rather than keeping a second copy of the same GET.
 
 from __future__ import annotations
 
+import copy
 import json
 from typing import Any, AsyncIterator, Callable, Mapping
 
@@ -154,6 +155,33 @@ class HttpDispatcher(Dispatcher):
     async def aclose(self) -> None:
         if self._owns_client:
             await self._client.aclose()
+
+    @property
+    def supports_fresh_connection(self) -> bool:
+        return self._owns_client
+
+    async def dispatch_fresh(
+        self,
+        operation: Operation,
+        params: Mapping[str, Any] | None = None,
+        headers: Mapping[str, str] | None = None,
+    ) -> WireResponse:
+        """Use a new owned pool, retaining endpoint, credentials and timeout.
+
+        Injected clients may carry custom auth, TLS or proxy settings. Refuse
+        them because those settings cannot be faithfully reconstructed here.
+        """
+        if not self._owns_client:
+            raise DispatchError('fresh_connection cannot reconstruct an injected HTTP client')
+        async with httpx.AsyncClient(
+            timeout=self._client.timeout,
+            follow_redirects=FOLLOW_REDIRECTS,
+            headers=self._client.headers,
+            cookies=httpx.Cookies(self._client.cookies),
+        ) as client:
+            fresh = copy.copy(self)
+            fresh._client = client
+            return await fresh.dispatch(operation, params, headers)
 
     # -- request plumbing --------------------------------------------------
 

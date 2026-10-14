@@ -131,6 +131,7 @@ class RunnerRequirement(str, enum.Enum):
     STREAM_DISCONNECT = 'stream_disconnect'
     AUTH_CREDENTIALS = 'auth_credentials'
     HEADER_INSPECTION = 'header_inspection'
+    FRESH_CONNECTION = 'fresh_connection'
 
 
 class HttpMethod(str, enum.Enum):
@@ -540,6 +541,7 @@ class Step(_Model):
 
     # -- the four kinds; exactly one must be present ---------------------
     operation: Operation | None = None
+    fresh_connection: bool = False
     raw: RawBlock | None = None
     client_response: ClientResponseBlock | None = None
     expect_webhook: ExpectWebhook | None = None
@@ -603,6 +605,14 @@ class Step(_Model):
         than one that fails.
         """
         kind = self.kind()
+
+        if self.fresh_connection and (
+            kind is not StepKind.OPERATION
+            or self.repeat is not None
+            or self.expect_stream is not None
+            or self.operation in (Operation.SEND_STREAMING_MESSAGE, Operation.SUBSCRIBE_TO_TASK)
+        ):
+            raise ValueError('`fresh_connection` requires a unary operation without repeat')
 
         if kind is not StepKind.OPERATION and self.params is not None:
             raise ValueError(f'`params` belongs to an operation step, not a {kind.value} step')
@@ -763,10 +773,17 @@ class Test(_Model):
         stream instead, and passed.
         """
         declared = set(self.runner_requirements or ())
+        if any(step.fresh_connection for step in self.steps) and (
+            not self.transport or any(t not in (TransportBinding.JSONRPC, TransportBinding.REST)
+                                      for t in self.transport)
+        ):
+            raise ValueError('`fresh_connection` requires transport: [jsonrpc, rest] or a subset')
         for step in self.steps:
             stream = step.expect_stream
             plans = (stream.streams if stream else None) or ()
             for requirement, used, feature in (
+                (RunnerRequirement.FRESH_CONNECTION, step.fresh_connection,
+                 'uses an independent transport connection'),
                 (RunnerRequirement.WEBHOOK_ENDPOINT,
                  step.kind() is StepKind.WEBHOOK,
                  'reads what the SUT delivered out of band'),

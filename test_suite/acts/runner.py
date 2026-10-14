@@ -510,6 +510,9 @@ class Runner:
             needed = ', '.join(sorted(r.value for r in missing))
             return f'runner does not provide {needed}'
 
+        if any(step.fresh_connection for step in test.steps) and not self.dispatcher.supports_fresh_connection:
+            return 'dispatcher cannot preserve connection settings on an independent transport'
+
         return self._unmet_precondition(test)
 
     def _unmet_precondition(self, test: Test) -> str | None:
@@ -1126,7 +1129,9 @@ class Runner:
         repeat = step.repeat
 
         if repeat is None:
-            return await self.dispatcher.dispatch(operation, params, headers), 1, True
+            dispatch = (self.dispatcher.dispatch_fresh if step.fresh_connection
+                        else self.dispatcher.dispatch)
+            return await dispatch(operation, params, headers), 1, True
 
         attempts = repeat.max_attempts or DEFAULT_MAX_ATTEMPTS
         delay_ms = DEFAULT_DELAY_MS if repeat.delay_ms is None else repeat.delay_ms

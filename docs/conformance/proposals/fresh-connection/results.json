@@ -1,0 +1,444 @@
+{
+  "upstream_acts_base": "a8c99376687151d2277a63a16a0f56f82a9e7f01",
+  "itk_base": "82458ceac60208cc46ccbe52b68dbb8e1ca2614a",
+  "python_sdk_commit": "0ee47d7baa47a706e33934a4e4c3d46bad16298f",
+  "network_validation": "22 passed; 0 skipped",
+  "relevant_regression": "339 passed; 0 skipped",
+  "upstream_corpus": "114 tests loaded; candidate equals tested fixture",
+  "runs": [
+    {
+      "binding": "jsonrpc",
+      "mutation": null,
+      "outcome": "pass",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            53756
+          ],
+          "path": "/jsonrpc/",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            53770
+          ],
+          "path": "/jsonrpc/",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "rest",
+      "mutation": null,
+      "outcome": "pass",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            34192
+          ],
+          "path": "/rest/message:send",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            34198
+          ],
+          "path": "/rest/tasks/1ab63a3f-17ce-4203-be04-698c75e407e8",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "jsonrpc",
+      "mutation": "state",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            55666
+          ],
+          "path": "/jsonrpc/",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            55682
+          ],
+          "path": "/jsonrpc/",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "rest",
+      "mutation": "state",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            35976
+          ],
+          "path": "/rest/message:send",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            35986
+          ],
+          "path": "/rest/tasks/6563bd25-7aa9-4501-961d-f5a6f179e9f6",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "jsonrpc",
+      "mutation": "id",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            36314
+          ],
+          "path": "/jsonrpc/",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            36324
+          ],
+          "path": "/jsonrpc/",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "rest",
+      "mutation": "id",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            45276
+          ],
+          "path": "/rest/message:send",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            45282
+          ],
+          "path": "/rest/tasks/61d71efd-b1e5-4a6f-a6dd-943eadf8a6d6",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "jsonrpc",
+      "mutation": "context",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            48886
+          ],
+          "path": "/jsonrpc/",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            48892
+          ],
+          "path": "/jsonrpc/",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "rest",
+      "mutation": "context",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            51976
+          ],
+          "path": "/rest/message:send",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            51984
+          ],
+          "path": "/rest/tasks/77f89c2d-69fc-4c14-9c90-f53ed8ea555a",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "jsonrpc",
+      "mutation": "message",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            38156
+          ],
+          "path": "/jsonrpc/",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            38166
+          ],
+          "path": "/jsonrpc/",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "rest",
+      "mutation": "message",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            47692
+          ],
+          "path": "/rest/message:send",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            47708
+          ],
+          "path": "/rest/tasks/3142216a-7d3e-4ad1-b5f6-456428945d5d",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "jsonrpc",
+      "mutation": "missing",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            36122
+          ],
+          "path": "/jsonrpc/",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            36124
+          ],
+          "path": "/jsonrpc/",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 6
+    },
+    {
+      "binding": "rest",
+      "mutation": "missing",
+      "outcome": "fail",
+      "freshness_control_rejected": false,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            44936
+          ],
+          "path": "/rest/message:send",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            44938
+          ],
+          "path": "/rest/tasks/beb45d85-d022-4195-a289-8e2ba594b8fc",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 6
+    },
+    {
+      "binding": "jsonrpc",
+      "mutation": "reuse",
+      "outcome": "pass",
+      "freshness_control_rejected": true,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            48142
+          ],
+          "path": "/jsonrpc/",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            48142
+          ],
+          "path": "/jsonrpc/",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    },
+    {
+      "binding": "rest",
+      "mutation": "reuse",
+      "outcome": "pass",
+      "freshness_control_rejected": true,
+      "requests": [
+        {
+          "client": [
+            "127.0.0.1",
+            43668
+          ],
+          "path": "/rest/message:send",
+          "get": false,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "",
+          "version": "1.0"
+        },
+        {
+          "client": [
+            "127.0.0.1",
+            43668
+          ],
+          "path": "/rest/tasks/e743275d-cada-43dc-8cb2-773b15930cce",
+          "get": true,
+          "authorization": "Bearer acts-fixture",
+          "cookie": "h09=session",
+          "version": "1.0"
+        }
+      ],
+      "checks": 10
+    }
+  ]
+}

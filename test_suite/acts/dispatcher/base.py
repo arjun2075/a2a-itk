@@ -174,6 +174,10 @@ class Dispatcher(abc.ABC):
     #: ``transport`` restriction.
     binding: TransportBinding
 
+    @property
+    def supports_fresh_connection(self) -> bool:
+        return False
+
     @abc.abstractmethod
     async def dispatch(
         self,
@@ -186,6 +190,15 @@ class Dispatcher(abc.ABC):
         An error *from the SUT* is returned as ``response.error``, not raised.
         Only a failure to complete the exchange raises :class:`DispatchError`.
         """
+
+    async def dispatch_fresh(
+        self,
+        operation: Operation,
+        params: Mapping[str, Any] | None = None,
+        headers: Mapping[str, str] | None = None,
+    ) -> WireResponse:
+        """Unary request on an independent transport; never silently reuse."""
+        raise UnsupportedByBinding('fresh_connection is not supported by this dispatcher')
 
     @abc.abstractmethod
     async def dispatch_raw(
